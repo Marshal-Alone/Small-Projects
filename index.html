@@ -74,11 +74,27 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Marshal | <a href="https://github.com/Marshal-Alone" target="_blank"
-                rel="noopener noreferrer">GitHub</a> | <a href="https://linkedin.com/in/marshal" target="_blank"
-                rel="noopener noreferrer">LinkedIn</a> | <a href="mailto:marshal@example.com">Email</a></p>
+        <p>&copy; 2024 Marshal |
+            <a class="footer-a" href="https://github.com/Marshal-Alone" target="_blank" rel="noopener noreferrer">GitHub
+            </a> |
+            <a class="footer-a" href="https://www.linkedin.com/in/marshal-alone-562652277/" target="_blank"
+                rel="noopener noreferrer">LinkedIn
+            </a> |
+            <a id="email-btn" class="footer-a" target="_blank" rel="noopener noreferrer">Email
+            </a>
+
+        </p>
 
     </footer>
 </body>
+<script>
+    let email_btn = document.querySelector("#email-btn");
+    email_btn.onclick = function () {
+        window.open(
+            'https://mail.google.com/mail/?view=cm&fs=1&to=marshal3869@gmail.com&su=',
+            '_blank'
+        );
+    };
+</script>
 
 </html>
