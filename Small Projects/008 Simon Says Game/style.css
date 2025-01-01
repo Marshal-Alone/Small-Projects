@@ -54,7 +54,7 @@ body {
 }
 
 .highscore {
-    /* display: none; */
+    display: none;
     position: absolute;
     right: 10px;
     top: 0;
