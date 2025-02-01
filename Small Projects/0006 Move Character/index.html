@@ -1,34 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Move Character</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Adventure</title>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/ios-filled/50/FFFFFF/rocket--v1.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
-    <div class="main-container">
-        <div class="parent">
-            <div class="char-container">
-                <div>&nbsp;O</div>
-                <div>/ &nbsp;\</div>
-                <div>&nbsp |</div>
-                <div>/ &nbsp;\</div>
+    <div class="bg"></div>
+    <div class="star-field">
+        <div class="layer"></div>
+        <div class="layer"></div>
+        <div class="layer"></div>
+    </div>
+    <div class="game-container">
+        <div class="game-header">
+            <div class="game-icon">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <div class="title-content">
+                <h1>Space Adventure</h1>
+                <p>Navigate through the cosmic void</p>
             </div>
         </div>
 
+        <div class="game-world">
+            <div class="character">
+                <i class="fas fa-user-astronaut"></i>
+            </div>
+        </div>
+
+        <div class="game-footer">
+            <button id="reset-btn" class="action-btn">
+                <i class="fas fa-redo-alt"></i>
+                <span>Reset Position</span>
+            </button>
+            <button id="toggle-controls" class="action-btn">
+                <i class="fas fa-keyboard"></i>
+                <span>Show Controls</span>
+            </button>
+        </div>
+
+        <div class="controls-info hidden">
+            <div class="key-controls">
+                <div class="key-group">
+                    <span class="key">W</span>
+                    <div class="key-row">
+                        <span class="key">A</span>
+                        <span class="key">S</span>
+                        <span class="key">D</span>
+                    </div>
+                    <div class="key-label">WASD Keys</div>
+                </div>
+                <div class="controls-divider">
+                    <span>or</span>
+                </div>
+                <div class="key-group">
+                    <span class="key"><i class="fas fa-arrow-up"></i></span>
+                    <div class="key-row">
+                        <span class="key"><i class="fas fa-arrow-left"></i></span>
+                        <span class="key"><i class="fas fa-arrow-down"></i></span>
+                        <span class="key"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="key-label">Arrow Keys</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <input type="text">
-    <h4>Enter Command to move (up,left,down,right)</h4>
-    <br><br>
-
-
-
     <script src="app.js"></script>
 </body>
-
 </html>

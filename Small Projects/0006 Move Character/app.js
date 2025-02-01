@@ -1,74 +1,193 @@
-const main_container = document.querySelector(".main-container");
-const char_container = document.querySelector(".char-container");
-const move = document.querySelector("input");
-console.dir(move);
+// Game elements
+const character = document.querySelector('.character');
+const gameWorld = document.querySelector('.game-world');
+const resetBtn = document.getElementById('reset-btn');
+const controlsInfo = document.querySelector('.controls-info');
+const toggleControlsBtn = document.getElementById('toggle-controls');
 
+// Game state
+let position = { x: 50, y: 50 }; // percentage
+let speed = 0.8; // Increased from 0.5 to 0.8 for faster movement
+let isControlsVisible = false;
+let keys = {
+    up: false,
+    down: false,
+    left: false,
+    right: false
+};
 
-let curr_pos_x = 0;
-let curr_pos_y = 0;
-console.log(curr_pos_x, curr_pos_y);
-
-function move_character() {
-    char_container.style.transform = `translateX(${curr_pos_x}px) translateY(${curr_pos_y}px)`;
-}
-// function moveY() {
-//     char_container.style.transform = `translateX(${curr_pos_x}px) translateY(${curr_pos_y}px) `;
-// }
-
-function reset() {
-    char_container.style.transform = `translateX(0px)`;
-    char_container.style.transform = `translateY(0px)`;
-    curr_pos_x = 0;
-    curr_pos_y = 0;
-    move.setAttribute("placeholder","..Out of bounds..")
-
+// Initialize character position
+function initCharacter() {
+    position = { x: 50, y: 50 };
+    updateCharacterPosition();
 }
 
-move.addEventListener("keydown", (event) => {
-    let key = event.code;
+// Update character position
+function updateCharacterPosition() {
+    character.style.left = `${position.x}%`;
+    character.style.top = `${position.y}%`;
+}
 
-    let parent_bound = document.querySelector(".parent").getBoundingClientRect();
-    let char_bound = char_container.getBoundingClientRect();
+// Move character
+function moveCharacter() {
+    const prevPosition = { ...position };
+    
+    if (keys.up && position.y > 0) position.y -= speed;
+    if (keys.down && position.y < 100) position.y += speed;
+    if (keys.left && position.x > 0) position.x -= speed;
+    if (keys.right && position.x < 100) position.x += speed;
 
-    function isOutOfBound() {
-        let res = (char_bound.left < parent_bound.left || char_bound.top < parent_bound.top || char_bound.right > parent_bound.right || char_bound.bottom > parent_bound.bottom);
-        console.log(res);
-        return res;
+    // Keep character within bounds
+    position.x = Math.max(0, Math.min(100, position.x));
+    position.y = Math.max(0, Math.min(100, position.y));
+
+    // Only update if position changed
+    if (prevPosition.x !== position.x || prevPosition.y !== position.y) {
+        updateCharacterPosition();
     }
+}
 
-    if (isOutOfBound()) {
-        reset();
+// Visual feedback for key presses
+function highlightKey(key) {
+    const keyElement = document.querySelector(`.key:contains('${key}')`);
+    if (keyElement) {
+        keyElement.style.background = 'var(--primary)';
+        keyElement.style.transform = 'translateY(-2px)';
+        keyElement.style.boxShadow = 'var(--glow)';
+    }
+}
+
+function removeHighlight(key) {
+    const keyElement = document.querySelector(`.key:contains('${key}')`);
+    if (keyElement) {
+        keyElement.style.background = 'var(--surface-light)';
+        keyElement.style.transform = 'translateY(0)';
+        keyElement.style.boxShadow = 'var(--shadow)';
+    }
+}
+
+// Handle keyboard input
+function handleKeyDown(e) {
+    switch(e.key.toLowerCase()) {
+        case 'w':
+        case 'arrowup':
+            if (!keys.up) {
+                keys.up = true;
+                highlightKey('W');
+                highlightKey('↑');
+            }
+            break;
+        case 's':
+        case 'arrowdown':
+            if (!keys.down) {
+                keys.down = true;
+                highlightKey('S');
+                highlightKey('↓');
+            }
+            break;
+        case 'a':
+        case 'arrowleft':
+            if (!keys.left) {
+                keys.left = true;
+                highlightKey('A');
+                highlightKey('←');
+            }
+            break;
+        case 'd':
+        case 'arrowright':
+            if (!keys.right) {
+                keys.right = true;
+                highlightKey('D');
+                highlightKey('→');
+            }
+            break;
+    }
+}
+
+function handleKeyUp(e) {
+    switch(e.key.toLowerCase()) {
+        case 'w':
+        case 'arrowup':
+            keys.up = false;
+            removeHighlight('W');
+            removeHighlight('↑');
+            break;
+        case 's':
+        case 'arrowdown':
+            keys.down = false;
+            removeHighlight('S');
+            removeHighlight('↓');
+            break;
+        case 'a':
+        case 'arrowleft':
+            keys.left = false;
+            removeHighlight('A');
+            removeHighlight('←');
+            break;
+        case 'd':
+        case 'arrowright':
+            keys.right = false;
+            removeHighlight('D');
+            removeHighlight('→');
+            break;
+    }
+}
+
+// Toggle controls visibility
+function toggleControls(event) {
+    if (event) {
+        event.stopPropagation(); // Prevent event from bubbling up
+    }
+    
+    isControlsVisible = !isControlsVisible;
+    
+    if (isControlsVisible) {
+        controlsInfo.classList.remove('hidden');
+        controlsInfo.classList.remove('slide-up');
+        controlsInfo.classList.add('slide-down');
+        toggleControlsBtn.innerHTML = '<i class="fas fa-keyboard"></i><span>Hide Controls</span>';
     } else {
-        switch (key) {
-
-            case 'ArrowUp':
-                move.setAttribute("placeholder", "...moving up...")
-                curr_pos_y -= 80;
-                move_character();
-                break;
-            case 'ArrowDown':
-                move.setAttribute("placeholder", "...moving down...")
-                curr_pos_y += 80;
-                move_character();
-                break;
-            case 'ArrowRight':
-                move.setAttribute("placeholder", "...moving right...")
-                curr_pos_x += 80;
-                move_character();
-                break;
-            case 'ArrowLeft':
-                move.setAttribute("placeholder", "...moving left...")
-                curr_pos_x -= 80;
-                move_character();
-                break;
-
-            default:
-                move.setAttribute("placeholder", "INVALID MOVE")
-                break;
-        }
-        console.log(curr_pos_x, curr_pos_y);
+        hideControls();
     }
+}
 
+// Hide controls
+function hideControls() {
+    if (!isControlsVisible) return;
+    
+    isControlsVisible = false;
+    controlsInfo.classList.add('slide-up');
+    toggleControlsBtn.innerHTML = '<i class="fas fa-keyboard"></i><span>Show Controls</span>';
+    setTimeout(() => {
+        if (!isControlsVisible) {
+            controlsInfo.classList.add('hidden');
+        }
+    }, 300);
+}
 
+// Reset character position
+function resetPosition() {
+    position = { x: 50, y: 50 };
+    updateCharacterPosition();
+    resetBtn.classList.add('active');
+    setTimeout(() => resetBtn.classList.remove('active'), 200);
+}
 
-})
+// Event listeners
+document.addEventListener('keydown', handleKeyDown);
+document.addEventListener('keyup', handleKeyUp);
+resetBtn.addEventListener('click', resetPosition);
+toggleControlsBtn.addEventListener('click', toggleControls);
+controlsInfo.addEventListener('click', (e) => e.stopPropagation()); // Prevent clicks inside controls from closing
+document.addEventListener('click', hideControls); // Hide controls when clicking outside
+
+// Start game
+initCharacter();
+
+// Game loop
+function gameLoop() {
+    moveCharacter();
+    requestAnimationFrame(gameLoop);
+}
+
+gameLoop();

@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stone Paper Scissor</title>
-
+    <title>Stone Paper Scissors</title>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/000000/hand-rock.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="container , hide">
+    <div class="container hide">
         <div class="play-ground">
-            <div class="header">
-                <h1>Stone Paper Scissor</h1>
-            </div>
-            <br><br><br><br>
-            <div class="choices">
-                <img id="img1" class="rock, choice" src="img/rock.png" alt="rock">
-                <img id="img2" class="paper, choice" src="img/paper.png" alt="paper">
-                <img id="img3" class="scissor, choice" src="img/scissors.png" alt="scossor">
-            </div>
-
-            <br><br><br><br>
-
-            <div class="score">
-                <div class="you">
-                    <h2 id="user-count">0</h2>
-                    <h3 id="username" style="font-size: 25px">User</h3>
+            <header class="header">
+                <h1>Rock Paper Scissors</h1>
+            </header>
+            
+            <div class="game-area">
+                <div class="choices">
+                    <div class="choice-wrapper">
+                        <img id="img1" class="choice rock" src="img/rock.png" alt="rock">
+                        <span class="choice-label">Rock</span>
+                    </div>
+                    <div class="choice-wrapper">
+                        <img id="img2" class="choice paper" src="img/paper.png" alt="paper">
+                        <span class="choice-label">Paper</span>
+                    </div>
+                    <div class="choice-wrapper">
+                        <img id="img3" class="choice scissor" src="img/scissors.png" alt="scissors">
+                        <span class="choice-label">Scissors</span>
+                    </div>
                 </div>
-                <div class="comp">
-                    <h2 id="comp-count">0</h2>
-                    <h3 style="font-size: 25px;">Computer</h3>
-                </div>
-            </div>
 
-            <div class="result">
-                <h2 id="txt">SELECT</h2>
+                <div class="score-board">
+                    <div class="score-card you">
+                        <div class="score-value">
+                            <h2 id="user-count">0</h2>
+                        </div>
+                        <h3 id="username">You</h3>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="score-card comp">
+                        <div class="score-value">
+                            <h2 id="comp-count">0</h2>
+                        </div>
+                        <h3>Computer</h3>
+                    </div>
+                </div>
+
+                <div class="result">
+                    <h2 id="txt">Choose Your Move</h2>
+                </div>
             </div>
         </div>
     </div>
-
     <script src="app.js"></script>
 </body>
-
 </html>

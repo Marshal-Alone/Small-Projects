@@ -3,6 +3,24 @@ const btn = document.querySelector("button");
 base_url = "https://v6.exchangerate-api.com/v6/4cdf7c6f57f1058e2ee551b4/latest";
 let msg = document.querySelector(".msg");
 
+let swap = document.querySelector("#swap");
+
+swap.addEventListener("click", () => {
+	console.log("swapping ....");
+	let from = document.querySelector("#from");
+	let to = document.querySelector("#to");
+
+	let from_value = document.querySelector("#from").value;
+	let to_value = document.querySelector("#to").value;
+	from.value = to_value;
+    to.value = from_value;
+    
+    updateFlag(document.querySelector("#from"))
+    updateFlag(document.querySelector("#to"))
+
+    getExchangeRate();
+});
+
 for (let select of dropdowns) {
 	for (curr_code in countryList) {
 		let newOption = document.createElement("option");
@@ -25,7 +43,6 @@ for (let select of dropdowns) {
 }
 
 const updateFlag = (element) => {
-	//element -> whose flag we want to update
 	let curr_code = element.value;
 	let countruCode = countryList[curr_code];
 	new_src = `https://flagsapi.com/${countruCode}/flat/64.png`;
@@ -62,24 +79,23 @@ window.addEventListener("load", () => {
 	getExchangeRate();
 });
 
-//adding swap button
-const swap_btn = document.querySelector("#swap");
-swap_btn.addEventListener("click", () => {
-	//get currrent values
-	let from_value = document.querySelector("#from").value;
-	let to_value = document.querySelector("#to").value;
+// const api = '4cdf7c6f57f1058e2ee551b4';
 
-	//swap values
-	let from = document.querySelector("#from");
-	from.value = to_value;
+// const btn = document.querySelector('#btn');;
 
-	let to = document.querySelector("#to");
-	to.value = from_value;
+// const getCurr = async () => {
+//     let from = document.querySelector('#from').value;
+//     let to = document.querySelector('#to').value;
+//     const url = `https://v6.exchangerate-api.com/v6/${api}/latest/${from}`
 
-	//update flag
-	updateFlag(from);
-    updateFlag(to);
-    
-    //update exchange rate
-    getExchangeRate();
-});
+//     let response = await fetch(url);
+//     let data = await response.json();
+
+//     console.log(data.conversion_rates[to]);
+
+// }
+
+// btn.addEventListener('click', (event) => {
+//     event.preventDefault();
+//     getCurr();
+// });

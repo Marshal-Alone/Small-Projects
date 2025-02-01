@@ -1,37 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIC TAC TOE</title>
+    <title>Tic Tac Toe | Modern Game</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2076/2076261.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="msg-container , hide">
-        <h1 id="msg">Winner</h1>
-        <button id="new-game">New Game</button>
-    </div>
-    <main>
-        <h1>Tic Tac Toe</h1>
-        <div class="container">
-            <div class="game">
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
+    <div class="particles"></div>
+    <div class="game-wrapper">
+        <div class="msg-container hide">
+            <div class="result-content">
+                <i class="fas fa-trophy winner-icon"></i>
+                <h2 id="msg">Winner</h2>
+                <button id="new-game" class="action-btn">
+                    <i class="fas fa-play"></i>
+                    New Game
+                </button>
             </div>
         </div>
-        <button id="reset-btn">Reset Board</button>
-    </main>
+        
+        <main>
+            <div class="game-header">
+                <h1><i class="fas fa-gamepad"></i> Tic Tac Toe</h1>
+                <div class="player-info">
+                    <div class="player player-x active">
+                        <i class="fas fa-times"></i>
+                        <span>Player X</span>
+                    </div>
+                    <div class="player player-o">
+                        <i class="fas fa-circle"></i>
+                        <span>Player O</span>
+                    </div>
+                </div>
+            </div>
 
+            <div class="container">
+                <div class="game">
+                    <button class="box" aria-label="game cell"></button>
+                    <button class="box" aria-label="game cell"></button>
+                    <button class="box" aria-label="game cell"></button>
+                    <button class="box" aria-label="game cell"></button>
+                    <button class="box" aria-label="game cell"></button>
+                    <button class="box" aria-label="game cell"></button>
+                    <button class="box" aria-label="game cell"></button>
+                    <button class="box" aria-label="game cell"></button>
+                    <button class="box" aria-label="game cell"></button>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button id="reset-btn" class="action-btn">
+                    <i class="fas fa-redo"></i>
+                    Reset Game
+                </button>
+            </div>
+        </main>
+    </div>
     <script src="app.js"></script>
 </body>
-
 </html>

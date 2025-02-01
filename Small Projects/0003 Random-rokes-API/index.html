@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Jokes</title>
+    <title>Random Jokes Generator</title>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/000000/comedy.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <div class="bg-animation">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
     <div class="container">
-        <div class="joke , hide">
-            <h2 id="setup"></h2>
-            <h2 id="delivery"></h2>
+        <div class="content">
+            <div class="header">
+                <i class="fas fa-laugh-beam header-icon"></i>
+                <h1>Random Jokes</h1>
+                <p class="subtitle">Your daily dose of laughter</p>
+            </div>
+            
+            <div class="joke-card hide">
+                <div class="joke-content">
+                    <div class="quote-left">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                    </div>
+                    <div class="joke-text">
+                        <h2 id="setup"></h2>
+                        <h2 id="delivery" class="delivery"></h2>
+                    </div>
+                    <div class="quote-right">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                    </div>
+                </div>
+                <div class="joke-footer">
+                    <button type="button" class="share-btn" title="Share Joke">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button type="button" id="btn" class="get-joke-btn">
+                <i class="fas fa-magic"></i>
+                Get New Joke
+            </button>
         </div>
-        <button type="button" id="btn">Get Joke !!</button>
     </div>
     <script src="app.js"></script>
 </body>
-
 </html>
